@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     CHATWOOT_BASE_URL: str = "http://chatwoot-web:3000"
     CHATWOOT_API_ACCESS_TOKEN: str = ""
     CHATWOOT_ACCOUNT_ID: int = 1
-    # Bot agent ID or Bot user to ignore loops
+    # Bot agent name or sender to ignore echo loops
     BOT_SENDER_NAME: str = "AI Assistant"
 
     # Dify Configuration
@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     # Google Calendar & Appointments Configuration
     GOOGLE_CALENDAR_ID: str = "primary"
     GOOGLE_SERVICE_ACCOUNT_FILE: str = "google-credentials.json"
-    CLINIC_TIMEZONE: str = "Asia/Tehran"
+    CLINIC_TIMEZONE: str = "UTC"
     DEFAULT_APPOINTMENT_DURATION_MINUTES: int = 30
 
     # Typebot Configuration
@@ -31,58 +31,58 @@ class Settings(BaseSettings):
 
     # Appointment Intent Keywords
     APPOINTMENT_KEYWORDS: List[str] = [
-        "نوبت",
-        "رزرو",
-        "وقت ویزیت",
-        "گرفتن وقت",
-        "تعیین وقت",
-        "نوبت دهی",
-        "رزرو نوبت",
-        "رزرو وقت",
-        "وقت دکتر",
         "appointment",
         "booking",
-        "book"
+        "book",
+        "schedule",
+        "reserve",
+        "reservation",
+        "consultation",
+        "doctor",
+        "visit",
+        "slot",
     ]
 
     # Reassurance and appointment links
     APPOINTMENT_REDIRECT_MESSAGE: str = (
-        "برای انتخاب پزشک، مشاهده ساعت‌های خالی و ثبت قطعی نوبت در تقویم، "
-        "لطفاً روی لینک سامانه نوبت‌دهی کلیک کنید:\n{booking_url}"
+        "To select your specialist, view available time slots, and confirm your booking on our calendar, "
+        "please click our scheduling portal:\n{booking_url}"
     )
 
     # Zero-Fail Handoff Settings
     HANDOFF_TRIGGER_TOKEN: str = "[TRIGGER_HUMAN_HANDOFF]"
     HANDOFF_KEYWORDS: List[str] = [
-        "پشتیبان",
-        "اپراتور",
-        "وصل کن به انسان",
-        "انسان",
-        "کارشناس",
-        "شکایت",
-        "اورژانس",
-        "دکتر متخصص",
-        "دعوا",
-        "کلاهبرداری",
         "human",
         "agent",
         "operator",
         "support",
+        "representative",
+        "person",
+        "real person",
+        "talk to human",
         "complaint",
-        "emergency"
+        "emergency",
+        "urgent",
+        "manager",
+        "supervisor",
+        "helpdesk",
+        "fraud",
+        "dispute",
     ]
 
     HANDOFF_LABEL: str = "human-needed"
     HANDOFF_ASSIGNED_TEAM_ID: int = 0  # 0 means unassigned or default team
 
-    # Reassurance message to user in Persian
+    # Reassurance message to user in English
     HANDOFF_USER_MESSAGE: str = (
-        "پیام شما به تیم کارشناسان و پشتیبانی منتقل شد. همکاران ما به زودی گفتگو را ادامه خواهند داد. سپاس از شکیبایی شما."
+        "Your conversation has been transferred to our live support team. "
+        "A representative will join shortly. Thank you for your patience."
     )
 
     # Fallback message if AI fails
     FALLBACK_ERROR_MESSAGE: str = (
-        "متأسفانه در پردازش هوشمند اختلالی پیش آمد. مکالمه فوراً به اپراتور انسانی ارجاع داده شد."
+        "We encountered a temporary issue processing your request with our automated assistant. "
+        "You have been immediately transferred to a human representative."
     )
 
     model_config = SettingsConfigDict(

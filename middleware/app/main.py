@@ -68,28 +68,31 @@ async def typebot_appointment_webhook(payload: TypebotBookingPayload):
         if result.get("success"):
             # Success confirmation message
             conf_msg = (
-                f"✅ نوبت شما با موفقیت در سیستم ثبت و در تقویم رزرو شد.\n"
-                f"👤 بیمار: {payload.patient_name}\n"
-                f"🩺 پزشک: {payload.doctor_name or 'پزشک کلینیک'}\n"
-                f"📅 زمان: {payload.start_time}\n"
-                f"کد رهگیری: {result.get('event_id')}"
+                f"✅ Your appointment has been successfully scheduled and booked on the calendar.\n"
+                f"👤 Patient: {payload.patient_name}\n"
+                f"🩺 Specialist: {payload.doctor_name or 'Clinic Specialist'}\n"
+                f"📅 Date & Time: {payload.start_time}\n"
+                f"Confirmation Code: {result.get('event_id')}"
             )
             await chatwoot_client.send_message(conv_id, conf_msg, message_type="outgoing")
             await chatwoot_client.add_labels(conv_id, ["appointment-booked"])
 
             # Staff private note
             staff_note = (
-                f"📌 [نوبت جدید ثبت شده در Google Calendar]\n"
-                f"بیمار: {payload.patient_name} ({payload.patient_phone})\n"
-                f"پزشک: {payload.doctor_name}\n"
-                f"لینک تقویم: {result.get('html_link')}"
+                f"📌 [New Google Calendar Appointment Booked]\n"
+                f"Patient: {payload.patient_name} ({payload.patient_phone})\n"
+                f"Doctor / Specialist: {payload.doctor_name}\n"
+                f"Calendar Event Link: {result.get('html_link')}"
             )
             await chatwoot_client.send_message(conv_id, staff_note, message_type="outgoing", private=True)
         else:
-            err_msg = "متأسفانه در ثبت تقویم خطایی رخ داد. پیام شما به منشی و پذیرش کلینیک ارجاع شد."
+            err_msg = (
+                "An error occurred while scheduling your calendar appointment. "
+                "Your inquiry has been transferred to our front desk reception."
+            )
             await chatwoot_client.trigger_human_handoff(
                 conv_id,
-                reason=f"خطا در ثبت تقویم: {result.get('error')}",
+                reason=f"Calendar booking error: {result.get('error')}",
                 user_notice=err_msg,
             )
 
@@ -142,7 +145,7 @@ async def process_chatwoot_event(payload: ChatwootWebhookPayload):
     if is_direct_handoff:
         await chatwoot_client.trigger_human_handoff(
             conversation_id=conversation_id,
-            reason=f"درخواست مستقیم کاربر: {handoff_reason}",
+            reason=f"Direct customer request: {handoff_reason}",
         )
         return
 
@@ -153,7 +156,7 @@ async def process_chatwoot_event(payload: ChatwootWebhookPayload):
         # Generate personalized booking link with conversation ID
         booking_url = f"{settings.TYPEBOT_PUBLIC_URL}?cid={conversation_id}"
         reply_text = settings.APPOINTMENT_REDIRECT_MESSAGE.format(booking_url=booking_url)
-        
+
         await chatwoot_client.send_message(conversation_id, reply_text, message_type="outgoing")
         await chatwoot_client.add_labels(conversation_id, ["appointment-pending"])
         return
@@ -173,7 +176,7 @@ async def process_chatwoot_event(payload: ChatwootWebhookPayload):
     if handoff_triggered:
         await chatwoot_client.trigger_human_handoff(
             conversation_id=conversation_id,
-            reason="تشخیص عدم تطابق با پایگاه دانش (RAG Fallback) یا حس منفی در Dify",
+            reason="Knowledge base mismatch (RAG Fallback) or negative sentiment detected",
         )
         return
 
@@ -189,7 +192,7 @@ async def process_chatwoot_event(payload: ChatwootWebhookPayload):
         # Fail-safe: If answer is empty or unexpected failure, handoff immediately
         await chatwoot_client.trigger_human_handoff(
             conversation_id=conversation_id,
-            reason="عدم دریافت پاسخ معتبر از موتور هوش مصنوعی (Fail-Safe to Human)",
+            reason="No valid response received from AI engine (Fail-Safe to Human)",
             user_notice=settings.FALLBACK_ERROR_MESSAGE,
         )
 
@@ -204,4 +207,3 @@ async def chatwoot_webhook(
     """
     background_tasks.add_task(process_chatwoot_event, payload)
     return {"status": "queued"}
-

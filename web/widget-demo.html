@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>کلینیک تخصصی و مرکز خدمات هوشمند | پشتیبانی آنلاین</title>
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <title>Specialized Clinic & Smart Care Center | Online Support & Scheduling</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
-            font-family: 'Vazirmatn', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         body {
             margin: 0;
@@ -28,6 +30,9 @@
             font-size: 1.3rem;
             font-weight: 800;
             color: #0284c7;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         .hero {
             max-width: 900px;
@@ -39,11 +44,13 @@
             font-size: 2.4rem;
             color: #0f172a;
             margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
         }
         p.subtitle {
             font-size: 1.15rem;
             color: #64748b;
-            max-width: 700px;
+            max-width: 720px;
             margin: 0 auto 2.5rem;
         }
         .cards {
@@ -51,18 +58,32 @@
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
-            text-align: right;
+            text-align: left;
         }
         .card {
             background: #ffffff;
-            padding: 1.5rem;
+            padding: 1.75rem;
             border-radius: 12px;
             border: 1px solid #e2e8f0;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
         }
         .card h3 {
             margin-top: 0;
             color: #0369a1;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .card p {
+            color: #475569;
+            font-size: 0.95rem;
+            margin-bottom: 0;
         }
         .btn-chat {
             display: inline-block;
@@ -75,6 +96,7 @@
             cursor: pointer;
             border: none;
             transition: background 0.2s;
+            font-size: 0.95rem;
         }
         .btn-chat:hover {
             background: #0369a1;
@@ -84,30 +106,30 @@
 <body>
 
 <header>
-    <div class="logo">🏥 کلینیک تخصصی و هوشمند</div>
+    <div class="logo">🏥 Smart Health Clinic</div>
     <div>
-        <button class="btn-chat" onclick="openSupportChat()">گفتگو و نوبت‌دهی آنلاین</button>
+        <button class="btn-chat" onclick="openSupportChat()">Online Support & Scheduling</button>
     </div>
 </header>
 
 <main class="hero">
-    <h1>سامانه یکپارچه مراجعین، پاسخگویی هوشمند و رزرواسیون</h1>
+    <h1>Omnichannel Patient Care, Intelligent Triage & Automated Scheduling</h1>
     <p class="subtitle">
-        پاسخ‌دهی آنی مبتنی بر پایگاه دانش پزشکی و تعرفه‌های مصوب، رزرو آنلاین نوبت ویزیت متصل به تقویم با قابلیت ارجاع فوری به پرسنل و پذیرش.
+        Instant AI-powered answers strictly grounded in official clinical protocols, real-time Google Calendar appointments, and instant human handoff to medical reception.
     </p>
 
     <div class="cards">
         <div class="card">
-            <h3>🤖 پاسخگویی بدون خطا (RAG)</h3>
-            <p>پاسخ‌های تایید شده بر اساس اسناد رسمی کلینیک بدون هذیان، اعلام تعرفه‌ها، مدارک لازم و راهنمایی آزمایش‌ها.</p>
+            <h3>🤖 Zero-Hallucination Knowledge (RAG)</h3>
+            <p>Verified responses strictly grounded in clinical documentation without hallucinations—covering tariffs, requirements, and prep instructions.</p>
         </div>
         <div class="card">
-            <h3>📅 رزرو نوبت متصل به تقویم</h3>
-            <p>انتخاب پزشک متخصص و ثبت قطعی ساعت ویزیت روی Google Calendar با دریافت پیامک و کد رهگیری.</p>
+            <h3>📅 Calendar-Integrated Booking</h3>
+            <p>Select your specialist and secure real-time appointment slots directly on Google Calendar with instant confirmation and booking codes.</p>
         </div>
         <div class="card">
-            <h3>👨‍⚕️ ارجاع فوری به کارشناس (Handoff)</h3>
-            <p>انتقال خودکار گفتگو به منشی و پزشک کشیک در صورت شرایط اورژانسی یا درخواست بیمار.</p>
+            <h3>👨‍⚕️ Zero-Fail Human Handoff</h3>
+            <p>Automatic transfer to receptionists and on-call physicians for emergencies, frustration, or direct customer requests.</p>
         </div>
     </div>
 </main>
@@ -118,7 +140,7 @@
 <!-- ======================================================== -->
 <script>
     (function(d,t) {
-        var BASE_URL = "https://chat.yourdomain.com"; // یا آدرس سرور چت‌ووت
+        var BASE_URL = "https://chat.yourdomain.com"; // Your Chatwoot server URL
         var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
         g.src = BASE_URL + "/packs/js/sdk.js";
         g.defer = true;
@@ -136,7 +158,7 @@
         if (window.$chatwoot) {
             window.$chatwoot.toggle("open");
         } else {
-            alert("ویجت چت در حال اتصال است؛ لطفاً چند لحظه صبر کنید.");
+            alert("Connecting to chat widget; please wait a moment.");
         }
     }
 </script>

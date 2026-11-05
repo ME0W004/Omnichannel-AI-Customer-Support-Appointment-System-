@@ -31,13 +31,13 @@ class HandoffDetector:
         match = self.handoff_regex.search(cleaned_text)
         if match:
             found_word = match.group(1)
-            return True, f"کلمه کلیدی بحرانی کشف شد: '{found_word}'"
+            return True, f"Critical keyword detected: '{found_word}'"
 
         return False, None
 
     def check_appointment_intent(self, text: Optional[str]) -> Tuple[bool, Optional[str]]:
         """
-        Detects if user is asking to book an appointment or visit a doctor.
+        Detects if user is asking to book an appointment or visit a specialist.
         """
         if not text:
             return False, None
@@ -46,10 +46,9 @@ class HandoffDetector:
         match = self.appointment_regex.search(cleaned_text)
         if match:
             found_word = match.group(1)
-            return True, f"نیت نوبت‌دهی کشف شد: '{found_word}'"
+            return True, f"Appointment intent detected: '{found_word}'"
 
         return False, None
 
 
 handoff_detector = HandoffDetector()
-

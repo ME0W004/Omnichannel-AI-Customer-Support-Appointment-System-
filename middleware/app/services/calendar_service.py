@@ -78,14 +78,14 @@ class GoogleCalendarService:
             start_time_iso = start_dt.isoformat()
             end_time_iso = end_dt.isoformat()
 
-        doc = doctor_name or "پزشک معالج / متخصص"
-        summary = f"نوبت ویزیت: {patient_name} - {doc}"
+        doc = doctor_name or "Attending Specialist / Physician"
+        summary = f"Appointment: {patient_name} - {doc}"
         description = (
-            f"سامانه نوبت‌دهی خودکار کلینیک\n"
-            f"نام بیمار: {patient_name}\n"
-            f"شماره تماس: {patient_phone}\n"
-            f"پزشک: {doc}\n"
-            f"توضیحات/علائم اولیه: {notes or 'ثبت شده از طریق چت‌بات هوشمند'}"
+            f"Automated Clinic Scheduling System\n"
+            f"Patient Name: {patient_name}\n"
+            f"Contact Phone: {patient_phone}\n"
+            f"Specialist: {doc}\n"
+            f"Notes / Reason: {notes or 'Scheduled via Intelligent Assistant'}"
         )
 
         event_body = {

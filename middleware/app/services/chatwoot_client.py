@@ -124,9 +124,9 @@ class ChatwootClient:
 
         # 3. Staff internal note
         note_content = (
-            f"⚠️ [انتقال خودکار به اپراتور انسان]\n"
-            f"دلیل ارجاع: {reason}\n"
-            f"ربات هوشمند از این لحظه در این گفتگو غیرفعال شده تا اپراتور پاسخ دهد."
+            f"⚠️ [Automated Human Handoff Triggered]\n"
+            f"Reason: {reason}\n"
+            f"The AI assistant is now paused for this conversation so a human agent can assist."
         )
         await self.send_message(
             conversation_id, note_content, message_type="outgoing", private=True

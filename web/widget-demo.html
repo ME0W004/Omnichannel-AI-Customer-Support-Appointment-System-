@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کلینیک تخصصی و مرکز خدمات هوشمند | پشتیبانی آنلاین</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        body {
+            margin: 0;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #0284c7;
+        }
+        .hero {
+            max-width: 900px;
+            margin: 3rem auto;
+            text-align: center;
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 2.4rem;
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+        p.subtitle {
+            font-size: 1.15rem;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            text-align: right;
+        }
+        .card {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #0369a1;
+        }
+        .btn-chat {
+            display: inline-block;
+            background: #0284c7;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: background 0.2s;
+        }
+        .btn-chat:hover {
+            background: #0369a1;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">🏥 کلینیک تخصصی و هوشمند</div>
+    <div>
+        <button class="btn-chat" onclick="openSupportChat()">گفتگو و نوبت‌دهی آنلاین</button>
+    </div>
+</header>
+
+<main class="hero">
+    <h1>سامانه یکپارچه مراجعین، پاسخگویی هوشمند و رزرواسیون</h1>
+    <p class="subtitle">
+        پاسخ‌دهی آنی مبتنی بر پایگاه دانش پزشکی و تعرفه‌های مصوب، رزرو آنلاین نوبت ویزیت متصل به تقویم با قابلیت ارجاع فوری به پرسنل و پذیرش.
+    </p>
+
+    <div class="cards">
+        <div class="card">
+            <h3>🤖 پاسخگویی بدون خطا (RAG)</h3>
+            <p>پاسخ‌های تایید شده بر اساس اسناد رسمی کلینیک بدون هذیان، اعلام تعرفه‌ها، مدارک لازم و راهنمایی آزمایش‌ها.</p>
+        </div>
+        <div class="card">
+            <h3>📅 رزرو نوبت متصل به تقویم</h3>
+            <p>انتخاب پزشک متخصص و ثبت قطعی ساعت ویزیت روی Google Calendar با دریافت پیامک و کد رهگیری.</p>
+        </div>
+        <div class="card">
+            <h3>👨‍⚕️ ارجاع فوری به کارشناس (Handoff)</h3>
+            <p>انتقال خودکار گفتگو به منشی و پزشک کشیک در صورت شرایط اورژانسی یا درخواست بیمار.</p>
+        </div>
+    </div>
+</main>
+
+<!-- ======================================================== -->
+<!-- Chatwoot Live Chat Web Widget Script                     -->
+<!-- Replace BASE_URL and websiteToken with your deployment!  -->
+<!-- ======================================================== -->
+<script>
+    (function(d,t) {
+        var BASE_URL = "https://chat.yourdomain.com"; // یا آدرس سرور چت‌ووت
+        var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        g.src = BASE_URL + "/packs/js/sdk.js";
+        g.defer = true;
+        g.async = true;
+        s.parentNode.insertBefore(g,s);
+        g.onload = function() {
+            window.chatwootSDK.run({
+                websiteToken: 'YOUR_CHATWOOT_WEBSITE_TOKEN',
+                baseUrl: BASE_URL
+            });
+        }
+    })(document,"script");
+
+    function openSupportChat() {
+        if (window.$chatwoot) {
+            window.$chatwoot.toggle("open");
+        } else {
+            alert("ویجت چت در حال اتصال است؛ لطفاً چند لحظه صبر کنید.");
+        }
+    }
+</script>
+
+</body>
+</html>

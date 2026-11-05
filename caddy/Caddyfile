@@ -1,0 +1,32 @@
+# ========================================================
+# Caddy Reverse Proxy Configuration with Automatic HTTPS
+# Replace yourdomain.com with your actual public domain!
+# ========================================================
+
+{
+    email admin@yourdomain.com
+}
+
+# 1. Chatwoot Omnichannel Inbox
+chat.yourdomain.com {
+    reverse_proxy chatwoot-web:3000
+}
+
+# 2. Dify AI Brain (Web Console & API)
+brain.yourdomain.com {
+    reverse_proxy dify-web:3000
+}
+
+# 3. Typebot Builder & Viewer
+bot.yourdomain.com {
+    reverse_proxy typebot-viewer:3000
+}
+
+admin-bot.yourdomain.com {
+    reverse_proxy typebot-builder:3000
+}
+
+# 4. Middleware FastAPI Webhook Bridge
+api.yourdomain.com {
+    reverse_proxy middleware:8000
+}
